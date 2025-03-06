@@ -53,12 +53,25 @@ iilabs3d download ~/data bench all
 data
   - iilabs3d-dataset
     - benchmark
-      - bench_seq0
-        - iilabs_calib.yaml
-        - bench_seq0_00.bag
-        - bench_seq0_01.bag
-        - bench_seq0_02.bag
-        - ...
+      - livox_mid-360
+        - calib_livox_mid-360.yaml
+        - elevator
+          - *.bag
+          - ground_truth.tum
+        - loop
+          - *.bag
+          - ground_truth.tum
+        ...
+      - ouster_os1-64
+        - calib_ouster_os1-64.yaml
+        - elevator
+          - *.bag
+          - ground_truth.tum
+        - loop
+          - *.bag
+          - ground_truth.tum
+        ...
+      ...
 ```
 
 ## Convert Format
