@@ -18,7 +18,7 @@ jobs:
             - name: Move sdist to dist
               run: mkdir -p dist && mv ${{github.workspace}}/python/dist/*.tar.gz dist/
 
-            - uses: actions/upload-artifact@v2
+            - uses: actions/upload-artifact@v3
               with:
                 path: dist/*.tar.gz
                 
@@ -27,7 +27,7 @@ jobs:
         needs: build_sdist
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/download-artifact@v2
+            - uses: actions/download-artifact@v3
               with:
                 name: artifact
                 path: dist
