@@ -1,0 +1,81 @@
+{
+  "benchmark": {
+    "livox_mid-360": {
+      "nav_a_diff": "livox_nav_a_diff_2025-02-05-17-18-07.bag",
+      "nav_a_omni": "livox_nav_a_omni_2025-02-05-16-30-32.bag",
+      "loop": "livox_loop_2025-02-06-18-24-40.bag",
+      "slippage": "livox_slippage_2025-02-05-16-25-36.bag",
+      "ramp": "livox_ramp_2025-02-06-08-08-21.bag",
+      "elevator": "livox_elevator_2025-02-06-18-13-55.bag"
+    },
+    "ouster_os1-64": {
+      "nav_a_diff": "ouster_nav_a_diff_2025-02-07-13-05-01.bag",
+      "nav_a_omni": "ouster_nav_a_omni_2025-02-07-13-44-03.bag",
+      "loop": "ouster_loop_2025-02-07-15-38-05.bag",
+      "slippage": "ouster_slippage_2025-02-07-13-38-37.bag",
+      "ramp": "ouster_ramp_2025-02-07-13-54-54.bag",
+      "elevator": "ouster_elevator_2025-02-07-16-17-43.bag"
+    },
+    "robosense_rs-helios-5515": {
+      "nav_a_diff": "robosense_nav_a_diff_2025-02-07-08-21-58.bag",
+      "nav_a_omni": "robosense_nav_a_omni_2025-02-07-08-36-17.bag",
+      "loop": "robosense_loop_2025-02-06-19-07-51.bag",
+      "slippage": "robosense_slippage_2025-02-06-19-29-08.bag",
+      "ramp": "robosense_ramp_2025-02-06-19-22-54.bag",
+      "elevator": "robosense_elevator_2025-02-06-18-59-34.bag"
+    },
+    "velodyne_vlp-16": {
+      "nav_a_diff": "velodyne_nav_a_diff_2025-02-05-11-28-45.bag",
+      "nav_a_omni": "velodyne_nav_a_omni_2025-02-05-12-04-26.bag",
+      "loop": "velodyne_loop_2025-02-05-12-33-01.bag",
+      "slippage": "velodyne_slippage_2025-02-05-10-39-46.bag",
+      "ramp": "velodyne_ramp_2025-02-05-14-40-54.bag",
+      "elevator": "velodyne_elevator_2025-02-05-15-04-36.bag"
+    }
+  },
+  "calibration": {
+    "intrinsic": {
+      "imu": {
+        "calib_xsens_imu": "xsens_imu_calib_2024-12-10-08-59-21.bag",
+        "calib_livox_imu": "livox_imu_calib_2025-02-13-09-49-44.bag",
+        "calib_ouster_imu": "ouster_imu_calib_2025-02-14-13-19-26.bag"
+      },
+      "wheel-odometry": [
+        "livox_calib_square_ccw_no_rot_2025-02-05-16-14-32.bag",
+        "livox_calib_square_ccw_rot_2025-02-05-16-16-32.bag",
+        "livox_calib_square_cw_no_rot_2025-02-05-16-12-05.bag",
+        "livox_calib_square_cw_rot_2025-02-05-16-08-52.bag",
+        "ouster_calib_square_ccw_no_rot_2025-02-07-14-17-21.bag",
+        "ouster_calib_square_ccw_rot_2025-02-07-14-14-34.bag",
+        "ouster_calib_square_cw_no_rot_2025-02-07-14-11-45.bag",
+        "ouster_calib_square_cw_rot_2025-02-07-14-08-54.bag",
+        "robosense_calib_square_ccw_no_rot_2025-02-07-08-50-37.bag",
+        "robosense_calib_square_ccw_rot_2025-02-07-08-52-28.bag",
+        "robosense_calib_square_cw_no_rot_2025-02-07-08-48-20.bag",
+        "robosense_calib_square_cw_rot_2025-02-07-08-45-32.bag",
+        "velodyne_calib_square_ccw_no_rot_2025-02-05-10-25-14.bag",
+        "velodyne_calib_square_ccw_rot_2025-02-05-10-28-23.bag",
+        "velodyne_calib_square_cw_no_rot_2025-02-05-10-23-00.bag",
+        "velodyne_calib_square_cw_rot_2025-02-05-10-20-37.bag"
+      ]
+    },
+    "extrinsic": {
+      "livox_mid-360": {
+        "calib_full_excite": "livox_calib_full_excite_2025-02-05-16-04-48.bag",
+        "calib_infinity": "livox_calib_infinity_2025-02-05-16-19-13.bag"
+      },
+      "ouster_os1-64": {
+        "calib_full_excite": "ouster_calib_full_excite_2025-02-07-15-29-53.bag",
+        "calib_infinity": "ouster_calib_infinity_2025-02-07-14-22-48.bag"
+      },
+      "robosense_rs-helios-5515": {
+        "calib_full_excite": "robosense_calib_full_excite_2025-02-07-08-59-25.bag",
+        "calib_infinity": "robosense_calib_infinity_2025-02-07-08-55-32.bag"
+      },
+      "velodyne_vlp-16": {
+        "calib_full_excite": "velodyne_calib_full_excite_2025-02-05-10-02-29.bag",
+        "calib_infinity": "velodyne_calib_infinity_2025-02-05-10-32-07.bag"
+      }
+    }
+  }
+}
