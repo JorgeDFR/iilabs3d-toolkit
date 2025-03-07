@@ -140,9 +140,6 @@ If you have any questions or you want to know more about this work, please conta
   [gitlab](https://gitlab.inesctec.pt/heber.m.sobreira),
   [mail](mailto:heber.m.sobreira@inesctec.pt))
 
-Project Link:
-
-
 ## Acknowledgements
 
 - [CRIIS - Centre for Robotics in Industry and Intelligent Systems](https://www.inesctec.pt/en/centres/criis/) from
