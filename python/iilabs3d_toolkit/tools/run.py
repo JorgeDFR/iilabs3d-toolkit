@@ -1,7 +1,7 @@
 import typer
 from pathlib import Path
 from typing import Sequence
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Optional
 from rich.console import Group
 from rich.panel import Panel
 
@@ -9,6 +9,8 @@ from iilabs3d_toolkit.tools.console import console
 from iilabs3d_toolkit.download.dataset_info import *
 from iilabs3d_toolkit.download.download_data import download_files
 from iilabs3d_toolkit.tools.convert_bag_ros2 import convert_bags
+from iilabs3d_toolkit.tools.eval import compute_metrics
+from iilabs3d_toolkit.tools.frame_correction import correct_ref_frame, iilabs3d_ref_frames
 
 app = typer.Typer()
 
@@ -45,11 +47,12 @@ def list_sensors() -> None:
 def complete_sensor(incomplete: str) -> Sequence[str]:
     return [sensor for sensor in iilabs3d_lidar_sensors if sensor.startswith(incomplete)]
 
-@app.command(help="Download sequences and sensor data. Use 'list-sequences' and 'list-sensors' for options.")
+@app.command("download",
+             help="Download sequences and sensor data. Use 'list-sequences' and 'list-sensors' for options.")
 def download(
     output_dir: Annotated[Path, typer.Argument(help="Output directory. The sequence will be stored in a sub-folder", show_default=False)],
     sequence: Annotated[str, typer.Argument(help="Sequence to download", show_default=False, autocompletion=complete_sequence)],
-    sensor: Annotated[str, typer.Argument(help="3D LiDAR sensor desired", show_default=False, autocompletion=complete_sensor)] = None
+    sensor: Annotated[Optional[str], typer.Argument(help="3D LiDAR sensor desired", show_default=False, autocompletion=complete_sensor)] = None
 ) -> None:
     # Handle sequences
     if sequence == "all":
@@ -109,15 +112,48 @@ def download(
         console.print(f"Downloading [bold]{len(sequences)}[/] sequence(s) to '{output_dir}'")
     download_files(sensors, sequences, output_dir)
 
-@app.command(help="Convert ROS1 bag file(s) from to ROS2 format")
+@app.command("convert",
+             help="Convert ROS1 bag file(s) from to ROS2 format")
 def convert(
     input_dir: Annotated[Path, typer.Argument(help="Input bag or directory containing multiple bags", show_default=False)],
     threads: bool = typer.Option(False, "--threads",
-        help="Use multiple threads for concurrent conversion (default: False)"
+        help="Use multiple threads for concurrent conversion of multiple bag files"
     )
 ) -> None:
     console.print(f"Converting all ROS1 bag files from '{input_dir}' to ROS2 bag format") 
     convert_bags(input_dir, use_threads=threads)
 
+@app.command("eval",
+             help="Calculate accuracy metrics between ground truth and odometry trajectories.")
+def eval(
+    ground_truth: Annotated[Path, typer.Argument(help="Path to the ground truth TUM file.", show_default=False)],
+    odometry: Annotated[Path, typer.Argument(help="Path to the odometry TUM file.", show_default=False)],
+) -> None:
+    compute_metrics(ground_truth, odometry)
+
+def complete_ref_frame(incomplete: str) -> Sequence[str]:
+    return [frame for frame in iilabs3d_ref_frames if frame.startswith(incomplete)]
+
+@app.command("correct-frame", 
+             help="Correct trajectory reference frame to base_link")
+def correct_frame(
+    trajectory: Annotated[Path, typer.Argument(help="Path to TUM trajectory file", show_default=False)],
+    ref_frame: Annotated[str, typer.Argument(help="Original reference frame", show_default=False, autocompletion=complete_ref_frame)],
+    sensor: Annotated[Optional[str], typer.Option(help="LiDAR sensor name", show_default=False, autocompletion=complete_sensor)] = None,
+) -> None:
+    if ref_frame not in iilabs3d_ref_frames:
+        console.log(f"[red]Error: Invalid reference frame '{ref_frame}'")
+        raise typer.Abort()
+     
+    if ref_frame == "lidar":
+        if not sensor:
+            console.log("[red]Error: Sensor name required for lidar frame correction")
+            raise typer.Abort()
+        elif sensor not in iilabs3d_lidar_sensors:
+            console.log(f"[red]Error: Unknown sensor '{sensor}'")
+            raise typer.Abort()
+
+    correct_ref_frame(trajectory, ref_frame, sensor)
+  
 if __name__ == "__main__":
     app()
