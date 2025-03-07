@@ -36,7 +36,7 @@ iilabs3d list-sequences
 ```
 #### List Available Sensors
 
-The IILABS 3D dataset provides all the sequences for diferent 3D LiDAR sensors , such as the Livox Mid 360, Velodyne VLP-16, etc. You can list the available 3D LiDAR sensors present in the IILABS 3D dataset by typing:
+The IILABS 3D dataset provides all the sequences for different 3D LiDAR sensors, such as the Livox Mid 360, Velodyne VLP-16, etc. You can list the available 3D LiDAR sensors present in the IILABS 3D dataset by typing:
 
 ```shell
 iilabs3d list-sensors
@@ -93,13 +93,13 @@ iilabs3d convert <input_bag_or_directory> [--threads]
 
 ### Trajectory Evaluation
 
-After downloading the desired sequence and retrive the odometry trajectory using a SLAM algorithm, you can use calculate the acuracy metrics, using both the ground-truth trajectory and odometry trajectory in TUM file format. In this toolkit we use the [evo](https://github.com/MichaelGrupp/evo) open-source Python library for metric computation. Therefore, to calulate the metrics you can type:
+After downloading the desired sequence and retrieving the odometry trajectory using a SLAM algorithm, you can calculate the accuracy metrics using both the ground-truth and the odometry trajectories in TUM file format. In this toolkit we use the [evo](https://github.com/MichaelGrupp/evo) open-source Python library for metric computation. Therefore, to calculate the metrics you can type:
 
 ```shell
 iilabs3d eval <ground_truth.tum> <odometry.tum>
 ```
 
-If you dont have the odometry trajectory in a tum file format, you can use the evo script to make a conversion from diferent formats. For example, considering that you have the odometry trajectory in a ROS1 bag file type:
+If you don't have the odometry trajectory in a tum file format, you can use the evo script to make a conversion from different formats. for example, if your odometry trajectory is provided as a ROS1 bag file, you can run:
 
 ```shell
 evo_traj bag <bag_file_name> <topic_name> --save_as_tum
@@ -109,7 +109,7 @@ To check all the available supported formats, please refer to the official evo d
 
 ### Reference Frame Correction
 
-Since the ground-truth data is provided in the robot `base_link` frame it is important to have the odometry trajectory data in the same reference frame when calculating the accuracy metrics. As such, we provide a command to make the required correction using the transformations retrived in the CAD models of the robot. The supported reference frames are `base_footprint`, `imu`, and `lidar`, were the last one requires the specification of the 3D LiDAR sensor to be consider (e.g. `livox_mid_360`). To perform this correction type:
+Since the ground-truth data is provided in the robot `base_link` frame it is important to have the odometry trajectory data in the same reference frame when calculating the accuracy metrics. As such, we provide a command to make the required correction using the transformations retrieved from the CAD models of the robot. The supported reference frames are `base_footprint`, `imu`, and `lidar`, where the last one requires the specification of the 3D LiDAR sensor to be considered (e.g. `livox_mid_360`). To perform this correction type:
 
 ```shell
 iilabs3d correct-frame <trajectory.tum> <ref_frame> [--sensor <sensor_name>]
@@ -122,7 +122,7 @@ See [LICENSE](/LICENSE) for more information.
 
 ## References
 
-If you use _iilabs3d-toolkit_ in a work that leads to a scientific publication, we would appreciate it if you would kindly cite the ILLABS 3D dataset in your manuscript:
+If you use _iilabs3d-toolkit_ in a work that leads to a scientific publication, we would appreciate it if you would kindly cite the IILABS 3D dataset in your manuscript:
 
 J.D. Ribeiro, R.B. Sousa, J.G. Martins, A.S. Aguiar, F.N. Santos and H.M. Sobreira, "IILABS 3D: iilab Indoor LiDAR-based SLAM Dataset" [Dataset], INESC TEC, 2025, DOI: https://doi.org/10.25747/VHNJ-WM80.
 
@@ -139,9 +139,6 @@ If you have any questions or you want to know more about this work, please conta
 - Héber Miguel Sobreira ([github](https://github.com/HeberSobreira),
   [gitlab](https://gitlab.inesctec.pt/heber.m.sobreira),
   [mail](mailto:heber.m.sobreira@inesctec.pt))
-
-Project Link:
-
 
 ## Acknowledgements
 
