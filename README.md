@@ -1,4 +1,17 @@
-# IILABS 3D Toolkit
+<div align="center">
+    <h1>IILABS 3D Toolkit</h1>
+    <h3>
+        <a href="https://rdm.inesctec.pt/dataset/nis-2025-001">Dataset Page</a> 
+        <!-- | 
+        <a href="TODO">Preprint</a> -->
+    </h3>
+    <a href=""><img src=https://github.com/Thorfr123/iilabs3d-toolkit/actions/workflows/python.yml/badge.svg /></a>
+    <a href="https://pypi.org/project/iilabs3d-toolkit/"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/iilabs3d-toolkit"/></a>
+    <!-- <a href=""><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/iilabs3d-toolkit"/></a> -->
+    <br />
+    <br />
+    <!-- <a href="https://github.com/Thorfr123/iilabs3d-toolkit"><img src="TODO"/></a>    -->
+</div>
 
 This toolkit provides a set of utilities to work with the [IILABS 3D Dataset](https://rdm.inesctec.pt/dataset/nis-2025-001). It enables you to list available dataset sequences and sensors, download sequences along with sensor data, convert ROS1 bag files to ROS2 format, evaluate trajectories using accuracy metrics, and correct trajectory reference frames.
 
@@ -26,6 +39,15 @@ iilabs3d --install-completion
 >**Note**: You need to restart your shell for the autocompletion to take effect.
 
 ## Usage
+
+To see all the available commands type:
+
+```shell
+iilabs3d --help
+```
+
+![diff-arbitrary](/docs/figs/iilabs3d_help_cli.png)
+
 ### Listing Commands
 #### List Available Sequences
 
@@ -34,6 +56,9 @@ You can list the available sequences in the IILABS 3D dataset by typing:
 ```shell
 iilabs3d list-sequences
 ```
+
+![diff-arbitrary](/docs/figs/iilabs3d_list-sequences_cli.png)
+
 #### List Available Sensors
 
 The IILABS 3D dataset provides all the sequences for different 3D LiDAR sensors, such as the Livox Mid 360, Velodyne VLP-16, etc. You can list the available 3D LiDAR sensors present in the IILABS 3D dataset by typing:
@@ -41,6 +66,8 @@ The IILABS 3D dataset provides all the sequences for different 3D LiDAR sensors,
 ```shell
 iilabs3d list-sensors
 ```
+
+![diff-arbitrary](/docs/figs/iilabs3d_list-sensors_cli.png)
 
 ### Data Download
 
@@ -82,6 +109,8 @@ data
       ...
 ```
 
+![diff-arbitrary](/docs/figs/iilabs3d_download_cli.png)
+
 ### Bag File Conversion
 
 The dataset sequences are provided in ROS1 bag format. We offer a convenient tool to convert them to ROS2 format, making use of the [rosbags](https://gitlab.com/ternaris/rosbags) open-source Python library to perform the conversion. To convert a bag or a sequence of bags, type:
@@ -91,6 +120,8 @@ iilabs3d convert <input_bag_or_directory> [--threads]
 ```
 >**Note**: We provide a option `--threads` to allow concurrent conversion of multiple bag files.
 
+![diff-arbitrary](/docs/figs/iilabs3d_convert_cli.png)
+
 ### Trajectory Evaluation
 
 After downloading the desired sequence and retrieving the odometry trajectory using a SLAM algorithm, you can calculate the accuracy metrics using both the ground-truth and the odometry trajectories in TUM file format. In this toolkit we use the [evo](https://github.com/MichaelGrupp/evo) open-source Python library for metric computation. Therefore, to calculate the metrics you can type:
@@ -98,6 +129,8 @@ After downloading the desired sequence and retrieving the odometry trajectory us
 ```shell
 iilabs3d eval <ground_truth.tum> <odometry.tum>
 ```
+
+![diff-arbitrary](/docs/figs/iilabs3d_eval_cli.png)
 
 If you don't have the odometry trajectory in a tum file format, you can use the evo script to make a conversion from different formats. for example, if your odometry trajectory is provided as a ROS1 bag file, you can run:
 
@@ -114,6 +147,8 @@ Since the ground-truth data is provided in the robot `base_link` frame it is imp
 ```shell
 iilabs3d correct-frame <trajectory.tum> <ref_frame> [--sensor <sensor_name>]
 ```
+
+![diff-arbitrary](/docs/figs/iilabs3d_correct-frame_cli.png)
 
 ## License
 
