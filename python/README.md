@@ -46,7 +46,7 @@ To see all the available commands type:
 iilabs3d --help
 ```
 
-![diff-arbitrary](/docs/figs/iilabs3d_help_cli.png)
+![diff-arbitrary](https://raw.githubusercontent.com/Thorfr123/iilabs3d-toolkit/refs/heads/main/docs/figs/iilabs3d_help_cli.png)
 
 ### Listing Commands
 #### List Available Sequences
@@ -57,7 +57,7 @@ You can list the available sequences in the IILABS 3D dataset by typing:
 iilabs3d list-sequences
 ```
 
-![diff-arbitrary](/docs/figs/iilabs3d_list-sequences_cli.png)
+![diff-arbitrary](https://raw.githubusercontent.com/Thorfr123/iilabs3d-toolkit/refs/heads/main/docs/figs/iilabs3d_list-sequences_cli.png)
 
 #### List Available Sensors
 
@@ -67,7 +67,7 @@ The IILABS 3D dataset provides all the sequences for different 3D LiDAR sensors,
 iilabs3d list-sensors
 ```
 
-![diff-arbitrary](/docs/figs/iilabs3d_list-sensors_cli.png)
+![diff-arbitrary](https://raw.githubusercontent.com/Thorfr123/iilabs3d-toolkit/refs/heads/main/docs/figs/iilabs3d_list-sensors_cli.png)
 
 ### Data Download
 
@@ -109,7 +109,7 @@ data
       ...
 ```
 
-![diff-arbitrary](/docs/figs/iilabs3d_download_cli.png)
+![diff-arbitrary](https://raw.githubusercontent.com/Thorfr123/iilabs3d-toolkit/refs/heads/main/docs/figs/iilabs3d_download_cli.png)
 
 ### Bag File Conversion
 
@@ -120,7 +120,7 @@ iilabs3d convert <input_bag_or_directory> [--threads]
 ```
 >**Note**: We provide a option `--threads` to allow concurrent conversion of multiple bag files.
 
-![diff-arbitrary](/docs/figs/iilabs3d_convert_cli.png)
+![diff-arbitrary](https://raw.githubusercontent.com/Thorfr123/iilabs3d-toolkit/refs/heads/main/docs/figs/iilabs3d_convert_cli.png)
 
 ### Trajectory Evaluation
 
@@ -130,7 +130,7 @@ After downloading the desired sequence and retrieving the odometry trajectory us
 iilabs3d eval <ground_truth.tum> <odometry.tum>
 ```
 
-![diff-arbitrary](/docs/figs/iilabs3d_eval_cli.png)
+![diff-arbitrary](https://raw.githubusercontent.com/Thorfr123/iilabs3d-toolkit/refs/heads/main/docs/figs/iilabs3d_eval_cli.png)
 
 If you don't have the odometry trajectory in a tum file format, you can use the evo script to make a conversion from different formats. for example, if your odometry trajectory is provided as a ROS1 bag file, you can run:
 
@@ -148,7 +148,7 @@ Since the ground-truth data is provided in the robot `base_link` frame it is imp
 iilabs3d correct-frame <trajectory.tum> <ref_frame> [--sensor <sensor_name>]
 ```
 
-![diff-arbitrary](/docs/figs/iilabs3d_correct-frame_cli.png)
+![diff-arbitrary](https://raw.githubusercontent.com/Thorfr123/iilabs3d-toolkit/refs/heads/main/docs/figs/iilabs3d_correct-frame_cli.png)
 
 ## License
 
