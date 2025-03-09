@@ -7,12 +7,12 @@
         <!-- | 
         <a href="TODO">Preprint</a> -->
     </h3>
-    <a href=""><img src=https://github.com/Thorfr123/iilabs3d-toolkit/actions/workflows/python.yml/badge.svg /></a>
+    <a href=""><img src=https://github.com/JorgeDFR/iilabs3d-toolkit/actions/workflows/python.yml/badge.svg /></a>
     <a href="https://pypi.org/project/iilabs3d-toolkit/"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/iilabs3d-toolkit"/></a>
     <a href=""><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/iilabs3d-toolkit"/></a>
     <br />
     <br />
-    <!-- <a href="https://github.com/Thorfr123/iilabs3d-toolkit"><img src="TODO"/></a>    -->
+    <!-- <a href="https://github.com/JorgeDFR/iilabs3d-toolkit"><img src="TODO"/></a>    -->
 </div>
 
 This toolkit provides a set of utilities to work with the [IILABS 3D Dataset](https://rdm.inesctec.pt/dataset/nis-2025-001). It enables you to list available dataset sequences and sensors, download sequences along with sensor data, convert ROS1 bag files to ROS2 format, evaluate trajectories using accuracy metrics, and correct trajectory reference frames.
@@ -167,7 +167,7 @@ J.D. Ribeiro, R.B. Sousa, J.G. Martins, A.S. Aguiar, F.N. Santos and H.M. Sobrei
 
 If you have any questions or you want to know more about this work, please contact one of the contributors of this package:
 
-- Jorge Diogo Ribeiro ([github](https://github.com/Thorfr123/),
+- Jorge Diogo Ribeiro ([github](https://github.com/JorgeDFR/),
   [gitlab](https://gitlab.inesctec.pt/jorge.d.ribeiro),
   [mail](mailto:jorge.d.ribeiro@inesctec.pt))
 - Ricardo B. Sousa ([github](https://github.com/sousarbarb/),
