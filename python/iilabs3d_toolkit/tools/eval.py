@@ -5,8 +5,6 @@ from evo.tools import file_interface
 
 from rich.table import Table
 from rich.panel import Panel
-from rich.console import Group
-from rich.box import ROUNDED
 
 from iilabs3d_toolkit.tools.console import console
 
@@ -22,10 +20,10 @@ def compute_metrics(gt_tum_path: Path, odom_tum_path: Path):
     traj_est_aligned = copy.deepcopy(traj_est)
     traj_est_aligned.align(traj_ref, correct_scale=False, correct_only_scale=False)
 
-    # APE
-    ape_metric = metrics.APE(metrics.PoseRelation.translation_part)
-    ape_metric.process_data((traj_ref, traj_est_aligned))
-    ape_stat = ape_metric.get_statistic(metrics.StatisticsType.rmse)
+    # ATE
+    ate_metric = metrics.APE(metrics.PoseRelation.translation_part)
+    ate_metric.process_data((traj_ref, traj_est_aligned))
+    ate_stat = ate_metric.get_statistic(metrics.StatisticsType.rmse)
 
     # RTE
     rte_metric = metrics.RPE(metrics.PoseRelation.translation_part, DELTA, DELTA_UNIT, all_pairs=True)
@@ -53,8 +51,8 @@ def compute_metrics(gt_tum_path: Path, odom_tum_path: Path):
 
     # Add rows
     results_table.add_row(
-        "Absolute Pose Error (APE)", 
-        f"{ape_stat:.3f} m", 
+        "Absolute Trajectory Error (ATE)", 
+        f"{ate_stat:.3f} m", 
         "RMSE of absolute position errors"
     )
     results_table.add_row(
