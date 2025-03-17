@@ -15,13 +15,13 @@
     <!-- <a href="https://github.com/JorgeDFR/iilabs3d-toolkit"><img src="TODO"/></a>    -->
 </div>
 
-This toolkit provides a set of utilities to work with the [IILABS 3D Dataset](https://rdm.inesctec.pt/dataset/nis-2025-001). It enables you to list available dataset sequences and sensors, download sequences along with sensor data, convert ROS1 bag files to ROS2 format, evaluate trajectories using accuracy metrics, and correct trajectory reference frames.
+This toolkit provides a set of utilities to work with the [IILABS 3D Dataset](https://rdm.inesctec.pt/dataset/nis-2025-001). It enables you to list available dataset sequences and sensors, download sequences along with sensor data, convert ROS 1 bag files to ROS 2 format, evaluate trajectories using accuracy metrics, and correct trajectory reference frames.
 
 **With this version, it is possible to do:**
 
 - **List Sequences and Sensors:** Easily view all available dataset sequences (benchmark, calibration, etc.) and 3D LiDAR sensors.
 - **Download Data:** Download sequences and sensor data with a single command.
-- **Bag File Conversion:** Convert ROS1 bag files to ROS2 format using the [rosbags](https://gitlab.com/ternaris/rosbags) Python library.
+- **Bag File Conversion:** Convert ROS 1 bag files to ROS 2 format using the [rosbags](https://gitlab.com/ternaris/rosbags) Python library.
 - **Trajectory Evaluation:** Calculate accuracy metrics between ground truth and odometry trajectories using the [evo](https://github.com/MichaelGrupp/evo) Python library.
 - **Reference Frame Correction:** Adjust trajectory reference frames to the reference frame of the ground-truth data (`base_link`).
 
@@ -115,7 +115,7 @@ data
 
 ### Bag File Conversion
 
-The dataset sequences are provided in ROS1 bag format. We offer a convenient tool to convert them to ROS2 format, making use of the [rosbags](https://gitlab.com/ternaris/rosbags) open-source Python library to perform the conversion. To convert a bag or a sequence of bags, type:
+The dataset sequences are provided in ROS 1 bag format. We offer a convenient tool to convert them to ROS 2 format, making use of the [rosbags](https://gitlab.com/ternaris/rosbags) open-source Python library to perform the conversion. To convert a bag or a sequence of bags, type:
 
 ```shell
 iilabs3d convert <input_bag_or_directory> [--threads]
@@ -134,7 +134,7 @@ iilabs3d eval <ground_truth.tum> <odometry.tum>
 
 ![iilabs3d_eval_cli](/docs/figs/iilabs3d_eval_cli.png)
 
-If you don't have the odometry trajectory in a tum file format, you can use the evo script to make a conversion from different formats. for example, if your odometry trajectory is provided as a ROS1 bag file, you can run:
+If you don't have the odometry trajectory in a tum file format, you can use the evo script to make a conversion from different formats. for example, if your odometry trajectory is provided as a ROS 1 bag file, you can run:
 
 ```shell
 evo_traj bag <bag_file_name> <topic_name> --save_as_tum

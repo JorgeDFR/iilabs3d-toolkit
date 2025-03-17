@@ -80,9 +80,9 @@ def get_bag_file_paths(input_folder: Path):
 
 def process_bag_file(args):
     """
-    Process a single ROS1 bag file:
+    Process a single ROS 1 bag file:
       - Create the output directory.
-      - Convert the bag file to ROS2.
+      - Convert the bag file to ROS 2.
       - Update the metadata if needed.
     """
     bagpath, new_bagpath = args
@@ -97,7 +97,7 @@ def process_bag_file(args):
     return new_bagpath
 
 def convert_bags(input_dir: Path, use_threads: bool = False) -> None:
-    """Convert ROS1 bag files to ROS2 format with detailed progress tracking."""
+    """Convert ROS 1 bag files to ROS 2 format with detailed progress tracking."""
     
     # Gather bag files to convert
     if input_dir.is_dir():
@@ -105,7 +105,7 @@ def convert_bags(input_dir: Path, use_threads: bool = False) -> None:
     else:
         bag_files = [(input_dir, input_dir.parent / (input_dir.stem + "_ros2"))]
 
-    # Filter out already existing ROS2 bag files
+    # Filter out already existing ROS 2 bag files
     existing_files = [dst for _, dst in bag_files if dst.exists()]
     num_existing = len(existing_files)
 

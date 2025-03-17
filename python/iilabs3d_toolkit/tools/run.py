@@ -48,11 +48,22 @@ def complete_sensor(incomplete: str) -> Sequence[str]:
     return [sensor for sensor in iilabs3d_lidar_sensors if sensor.startswith(incomplete)]
 
 @app.command("download",
-             help="Download sequences and sensor data. Use 'list-sequences' and 'list-sensors' for options.")
+             help="Download sequences and sensor data. Use 'list-sequences' and 'list-sensors' to view available options.")
 def download(
-    output_dir: Annotated[Path, typer.Argument(help="Output directory. The sequence will be stored in a sub-folder", show_default=False)],
-    sequence: Annotated[str, typer.Argument(help="Sequence to download", show_default=False, autocompletion=complete_sequence)],
-    sensor: Annotated[Optional[str], typer.Argument(help="3D LiDAR sensor desired", show_default=False, autocompletion=complete_sensor)] = None
+    dataset_dir: Annotated[Path, typer.Argument(
+        help="Output directory to save the dataset. Sequences will be stored in sub-folders. Use the same directory for multiple downloads.", 
+        show_default=False
+    )],
+    sequence: Annotated[str, typer.Argument(
+        help="Sequence to download from the dataset (see 'list-sequences' for available options)", 
+        show_default=False, 
+        autocompletion=complete_sequence
+    )],
+    sensor: Annotated[Optional[str], typer.Argument(
+        help="3D LiDAR sensor model to download (see 'list-sensors' for available options)", 
+        show_default=False, 
+        autocompletion=complete_sensor
+    )] = None
 ) -> None:
     # Handle sequences
     if sequence == "all":
@@ -103,31 +114,41 @@ def download(
         raise typer.Abort()
 
     # Create output directory if needed
-    output_dir.mkdir(parents=True, exist_ok=True)
+    dataset_dir.mkdir(parents=True, exist_ok=True)
     
     # Download files
     if requires_sensor:
-        console.print(f"Downloading [bold]{len(sequences)}[/] sequence(s) for [bold]{len(sensors)}[/] sensor(s) to '{output_dir}'")
+        console.print(f"Downloading [bold]{len(sequences)}[/] sequence(s) for [bold]{len(sensors)}[/] sensor(s) to '{dataset_dir}'")
     else:
-        console.print(f"Downloading [bold]{len(sequences)}[/] sequence(s) to '{output_dir}'")
-    download_files(sensors, sequences, output_dir)
+        console.print(f"Downloading [bold]{len(sequences)}[/] sequence(s) to '{dataset_dir}'")
+    download_files(sensors, sequences, dataset_dir)
 
 @app.command("convert",
-             help="Convert ROS1 bag file(s) from to ROS2 format")
+             help="Convert ROS 1 bag file(s) from to ROS 2 format")
 def convert(
-    input_dir: Annotated[Path, typer.Argument(help="Input bag or directory containing multiple bags", show_default=False)],
-    threads: bool = typer.Option(False, "--threads",
+    input_dir: Annotated[Path, typer.Argument(
+        help="Input bag or directory containing multiple bags", 
+        show_default=False
+    )],
+    threads: bool = typer.Option(
+        False, "--threads",
         help="Use multiple threads for concurrent conversion of multiple bag files"
     )
 ) -> None:
-    console.print(f"Converting all ROS1 bag files from '{input_dir}' to ROS2 bag format") 
+    console.print(f"Converting all ROS 1 bag files from '{input_dir}' to ROS 2 bag format") 
     convert_bags(input_dir, use_threads=threads)
 
 @app.command("eval",
-             help="Calculate accuracy metrics between ground truth and odometry trajectories.")
+             help="Evaluate trajectory accuracy by comparing ground truth and odometry data. Calculates Absolute Trajectory Error (ATE), Relative Translational Error (RTE), and Relative Rotational Error (RRE). Both trajectories must be in the same reference frame (robot frame: base_link). If they are not, use the 'correct-frame' command to transform the odometry data. ")
 def eval(
-    ground_truth: Annotated[Path, typer.Argument(help="Path to the ground truth TUM file.", show_default=False)],
-    odometry: Annotated[Path, typer.Argument(help="Path to the odometry TUM file.", show_default=False)],
+    ground_truth: Annotated[Path, typer.Argument(
+        help="Path to the ground truth TUM file.", 
+        show_default=False
+    )],
+    odometry: Annotated[Path, typer.Argument(
+        help="Path to the odometry TUM file.", 
+        show_default=False
+    )],
 ) -> None:
     compute_metrics(ground_truth, odometry)
 
@@ -137,9 +158,20 @@ def complete_ref_frame(incomplete: str) -> Sequence[str]:
 @app.command("correct-frame", 
              help="Correct trajectory reference frame to base_link")
 def correct_frame(
-    trajectory: Annotated[Path, typer.Argument(help="Path to TUM trajectory file", show_default=False)],
-    ref_frame: Annotated[str, typer.Argument(help="Original reference frame", show_default=False, autocompletion=complete_ref_frame)],
-    sensor: Annotated[Optional[str], typer.Option(help="LiDAR sensor name", show_default=False, autocompletion=complete_sensor)] = None,
+    trajectory: Annotated[Path, typer.Argument(
+        help="Path to TUM trajectory file", 
+        show_default=False
+    )],
+    ref_frame: Annotated[str, typer.Argument(
+        help="Original reference frame", 
+        show_default=False, 
+        autocompletion=complete_ref_frame
+    )],
+    sensor: Annotated[Optional[str], typer.Option(
+        help="LiDAR sensor name", 
+        show_default=False, 
+        autocompletion=complete_sensor
+    )] = None,
 ) -> None:
     if ref_frame not in iilabs3d_ref_frames:
         console.log(f"[red]Error: Invalid reference frame '{ref_frame}'")
