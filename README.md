@@ -12,7 +12,7 @@
     <a href=""><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/iilabs3d-toolkit"/></a>
     <br />
     <br />
-    <!-- <a href="https://github.com/JorgeDFR/iilabs3d-toolkit"><img src="TODO"/></a>    -->
+    <a href="https://github.com/JorgeDFR/iilabs3d-toolkit"><img src="https://raw.githubusercontent.com/JorgeDFR/iilabs3d-toolkit/refs/heads/main/docs/figs/iilabs3d_image.png"/></a>
 </div>
 
 This toolkit provides a set of utilities to work with the [IILABS 3D Dataset](https://rdm.inesctec.pt/dataset/nis-2025-001). It enables you to list available dataset sequences and sensors, download sequences along with sensor data, convert ROS 1 bag files to ROS 2 format, evaluate trajectories using accuracy metrics, and correct trajectory reference frames.
