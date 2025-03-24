@@ -161,7 +161,7 @@ See [LICENSE](/LICENSE) for more information.
 
 If you use _iilabs3d-toolkit_ in a work that leads to a scientific publication, we would appreciate it if you would kindly cite the IILABS 3D dataset in your manuscript:
 
-J.D. Ribeiro, R.B. Sousa, J.G. Martins, A.S. Aguiar, F.N. Santos and H.M. Sobreira, "IILABS 3D: iilab Indoor LiDAR-based SLAM Dataset" [Dataset], INESC TEC, 2025, DOI: https://doi.org/10.25747/VHNJ-WM80.
+J.D. Ribeiro, R.B. Sousa, J.G. Martins, A.S. Aguiar, F.N. Santos and H.M. Sobreira, "IILABS 3D: iilab Indoor LiDAR-based SLAM Dataset" [Dataset], INESC TEC, 2025, DOI: [10.25747/VHNJ-WM80](https://doi.org/10.25747/VHNJ-WM80).
 
 ## Contacts
 
