@@ -4,31 +4,35 @@ build-backend = "hatchling.build"
 
 [project]
 name = "iilabs3d-toolkit"
-version = "0.1.1"
+version = "0.1.2"
 description = "Toolkit for the IILABS 3D dataset"
 readme = "README.md"
 authors = [
     { name = "Jorge Diogo Ribeiro", email = "jorge.d.ribeiro@inesctec.pt" },
 ]
 requires-python = ">=3.8"
-
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: BSD License",
     "Operating System :: Unix",
-    "Intended Audience :: Developers",
-    "Intended Audience :: Science/Research"
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
 ]
-
 dependencies = [
     "rich",
     "typer>=0.10.0",
     "typing_extensions",
     "requests",
-    "rosbags",
+    "rosbags==0.9.23",
     "evo",
     "numpy",
 ]
+
+[project.urls]
+Homepage = "https://github.com/jorgedfr/iilabs3d-toolkit"
+Documentation = "https://jorgedfr.github.io/3d_lidar_slam_benchmark_at_iilab/"
+Source = "https://github.com/jorgedfr/iilabs3d-toolkit"
+Issues = "https://github.com/jorgedfr/iilabs3d-toolkit/issues"
 
 [project.scripts]
 iilabs3d = "iilabs3d_toolkit.tools.run:app"
