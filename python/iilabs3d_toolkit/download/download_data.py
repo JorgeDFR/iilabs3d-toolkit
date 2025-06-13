@@ -41,7 +41,7 @@ def download_files(sensors: List[str], sequences: List[str], output_dir: Path) -
     ) as progress, requests.Session() as session:
         for url, local_path in download_list:
             download_file_with_retry(session, url, local_path, progress)
-    
+
     console.print(":tada: [bold green]All downloads completed!")
 
 def download_file_with_retry(session: requests.Session, url: str, local_path: Path, progress: Progress,
@@ -90,7 +90,7 @@ def build_download_list(sensors: List[str], sequences: List[str], output_base: P
 
     return download_list
 
-def add_benchmark_entries(sensor: str, sequence: str, dataset_info: dict, 
+def add_benchmark_entries(sensor: str, sequence: str, dataset_info: dict,
                           output_base: Path, download_list: set, handled_calibrations: set):
     file_name = dataset_info["benchmark"].get(sensor, {}).get(sequence)
     url = f"{DATASET_LINK}/benchmark/{sensor}/{file_name}"
@@ -107,14 +107,14 @@ def add_benchmark_entries(sensor: str, sequence: str, dataset_info: dict,
         download_list.add((calib_url, calib_path))
         handled_calibrations.add(sensor)
 
-def add_imu_intrinsic_entries(sequence: str, dataset_info: dict, 
+def add_imu_intrinsic_entries(sequence: str, dataset_info: dict,
                               output_base: Path, download_list: set):
     file_name = dataset_info["calibration"].get("intrinsic", {}).get("imu", {}).get(sequence)
     url = f"{DATASET_LINK}/calibration/intrinsic/imu/{file_name}"
     local_path = output_base / "calibration" / "intrinsic" / "imu" / file_name
     download_list.add((url, local_path))
 
-def add_wheel_odom_entries(sensor: str, sequence: str, dataset_info: dict, 
+def add_wheel_odom_entries(sensor: str, sequence: str, dataset_info: dict,
                            output_base: Path, download_list: set):
     file_name = dataset_info["calibration"].get("intrinsic", {}).get("wheel-odometry", {}).get(sensor, {}).get(sequence)
     url = f"{DATASET_LINK}/calibration/intrinsic/wheel-odometry/{sensor}/{file_name}"
@@ -125,7 +125,7 @@ def add_wheel_odom_entries(sensor: str, sequence: str, dataset_info: dict,
     gt_path = output_base / "calibration" / "intrinsic" / "wheel-odometry" / f"gt_{Path(file_name).stem}.tum"
     download_list.add((gt_url, gt_path))
 
-def add_extrinsic_entries(sensor: str, sequence: str, dataset_info: dict, 
+def add_extrinsic_entries(sensor: str, sequence: str, dataset_info: dict,
                           output_base: Path, download_list: set):
     file_name = dataset_info["calibration"].get("extrinsic", {}).get(sensor, {}).get(sequence)
     url = f"{DATASET_LINK}/calibration/extrinsic/{sensor}/{file_name}"
