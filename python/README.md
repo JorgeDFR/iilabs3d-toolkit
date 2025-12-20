@@ -1,11 +1,11 @@
 <div align="center">
     <h1>IILABS 3D Toolkit</h1>
     <h3>
-        <a href="https://jorgedfr.github.io/3d_lidar_slam_benchmark_at_iilab/">Project Site</a> 
+        <a href="https://jorgedfr.github.io/3d_lidar_slam_benchmark_at_iilab/">Project Site</a>
         |
-        <a href="https://rdm.inesctec.pt/dataset/nis-2025-001">Dataset Page</a>
-        <!-- | 
-        <a href="TODO">Preprint</a> -->
+        <a href="https://doi.org/10.25747/VHNJ-WM80">Dataset Page</a>
+        |
+        <a href="https://doi.org/10.1109/ACCESS.2025.3643753">Article</a>
     </h3>
     <a href=""><img src=https://github.com/JorgeDFR/iilabs3d-toolkit/actions/workflows/python.yml/badge.svg /></a>
     <a href="https://pypi.org/project/iilabs3d-toolkit/"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/iilabs3d-toolkit"/></a>
@@ -15,7 +15,8 @@
     <a href="https://github.com/JorgeDFR/iilabs3d-toolkit"><img src="https://raw.githubusercontent.com/JorgeDFR/iilabs3d-toolkit/refs/heads/main/docs/figs/iilabs3d_image.png"/></a>
 </div>
 
-This toolkit provides a set of utilities to work with the [IILABS 3D Dataset](https://rdm.inesctec.pt/dataset/nis-2025-001). It enables you to list available dataset sequences and sensors, download sequences along with sensor data, convert ROS 1 bag files to ROS 2 format, evaluate trajectories using accuracy metrics, and correct trajectory reference frames.
+This toolkit provides a set of utilities to work with the [IILABS 3D Dataset](https://doi.org/10.25747/VHNJ-WM80).
+It enables you to list available dataset sequences and sensors, download sequences along with sensor data, convert ROS 1 bag files to ROS 2 format, evaluate trajectories using accuracy metrics, and correct trajectory reference frames.
 
 **With this version, it is possible to do:**
 
@@ -63,7 +64,8 @@ iilabs3d list-sequences
 
 #### List Available Sensors
 
-The IILABS 3D dataset provides all the sequences for different 3D LiDAR sensors, such as the Livox Mid 360, Velodyne VLP-16, etc. You can list the available 3D LiDAR sensors present in the IILABS 3D dataset by typing:
+The IILABS 3D dataset provides all the sequences for different 3D LiDAR sensors, such as the Livox Mid 360, Velodyne VLP-16, etc.
+You can list the available 3D LiDAR sensors present in the IILABS 3D dataset by typing:
 
 ```shell
 iilabs3d list-sensors
@@ -115,7 +117,8 @@ data
 
 ### Bag File Conversion
 
-The dataset sequences are provided in ROS 1 bag format. We offer a convenient tool to convert them to ROS 2 format, making use of the [rosbags](https://gitlab.com/ternaris/rosbags) open-source Python library to perform the conversion. To convert a bag or a sequence of bags, type:
+The dataset sequences are provided in ROS 1 bag format. We offer a convenient tool to convert them to ROS 2 format, making use of the [rosbags](https://gitlab.com/ternaris/rosbags) open-source Python library to perform the conversion.
+To convert a bag or a sequence of bags, type:
 
 ```shell
 iilabs3d convert <input_bag_or_directory> [--threads]
@@ -126,7 +129,9 @@ iilabs3d convert <input_bag_or_directory> [--threads]
 
 ### Trajectory Evaluation
 
-After downloading the desired sequence and retrieving the odometry trajectory using a SLAM algorithm, you can calculate the accuracy metrics using both the ground-truth and the odometry trajectories in TUM file format. In this toolkit we use the [evo](https://github.com/MichaelGrupp/evo) open-source Python library for metric computation. Therefore, to calculate the metrics you can type:
+After downloading the desired sequence and retrieving the odometry trajectory using a SLAM algorithm, you can calculate the accuracy metrics using both the ground-truth and the odometry trajectories in TUM file format.
+In this toolkit we use the [evo](https://github.com/MichaelGrupp/evo) open-source Python library for metric computation.
+Therefore, to calculate the metrics you can type:
 
 ```shell
 iilabs3d eval <ground_truth.tum> <odometry.tum>
@@ -134,7 +139,8 @@ iilabs3d eval <ground_truth.tum> <odometry.tum>
 
 ![iilabs3d_eval_cli](https://raw.githubusercontent.com/JorgeDFR/iilabs3d-toolkit/refs/heads/main/docs/figs/iilabs3d_eval_cli.png)
 
-If you don't have the odometry trajectory in a tum file format, you can use the evo script to make a conversion from different formats. for example, if your odometry trajectory is provided as a ROS 1 bag file, you can run:
+If you don't have the odometry trajectory in a tum file format, you can use the evo script to make a conversion from different formats.
+For example, if your odometry trajectory is provided as a ROS 1 bag file, you can run:
 
 ```shell
 evo_traj bag <bag_file_name> <topic_name> --save_as_tum
@@ -144,7 +150,10 @@ To check all the available supported formats, please refer to the official evo d
 
 ### Reference Frame Correction
 
-Since the ground-truth data is provided in the robot `base_link` frame it is important to have the odometry trajectory data in the same reference frame when calculating the accuracy metrics. As such, we provide a command to make the required correction using the transformations retrieved from the CAD models of the robot. The supported reference frames are `base_footprint`, `imu`, and `lidar`, where the last one requires the specification of the 3D LiDAR sensor to be considered (e.g. `livox_mid_360`). To perform this correction type:
+Since the ground-truth data is provided in the robot `base_link` frame it is important to have the odometry trajectory data in the same reference frame when calculating the accuracy metrics.
+As such, we provide a command to make the required correction using the transformations retrieved from the CAD models of the robot.
+The supported reference frames are `base_footprint`, `imu`, and `lidar`, where the last one requires the specification of the 3D LiDAR sensor to be considered (e.g. `livox_mid_360`).
+To perform this correction type:
 
 ```shell
 iilabs3d correct-frame <trajectory.tum> <ref_frame> [--sensor <sensor_name>]
@@ -161,7 +170,25 @@ See [LICENSE](/LICENSE) for more information.
 
 If you use _iilabs3d-toolkit_ in a work that leads to a scientific publication, we would appreciate it if you would kindly cite the IILABS 3D dataset in your manuscript:
 
-J.D. Ribeiro, R.B. Sousa, J.G. Martins, A.S. Aguiar, F.N. Santos and H.M. Sobreira, "IILABS 3D: iilab Indoor LiDAR-based SLAM Dataset" [Dataset], INESC TEC, 2025, DOI: [10.25747/VHNJ-WM80](https://doi.org/10.25747/VHNJ-WM80).
+**Plain Text**
+
+> J.D. Ribeiro, R.B. Sousa, J.G. Martins, A.S. Aguiar, F.N. Santos and H.M. Sobreira,
+> 2025,
+> "IILABS 3D: iilab Indoor LiDAR-based SLAM Dataset",
+> INESC TEC,
+> doi: [10.25747/VHNJ-WM80](https://doi.org/10.25747/VHNJ-WM80).
+
+**BibTex**
+
+```bibtex
+@MISC{ribeiro:2025:iilabs3d:dataset,
+  author    = {J.D. Ribeiro and R.B. Sousa and J.G. Martins and A.S. Aguiar and F.N. Santos and H.M. Sobreira},
+  title     = {{IILABS 3D}: iilab {I}ndoor {LiDAR}-based {SLAM} {D}ataset},
+  year      = {2025},
+  publisher = {INESC TEC},
+  doi       = {10.25747/VHNJ-WM80},
+}
+```
 
 ## Contacts
 
