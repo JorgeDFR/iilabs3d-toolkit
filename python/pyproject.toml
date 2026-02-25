@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "iilabs3d-toolkit"
-version = "0.2.0"
+version = "0.2.1"
 description = "Toolkit for the IILABS 3D dataset"
 readme = "README.md"
 authors = [
@@ -26,6 +26,7 @@ dependencies = [
     "rosbags==0.9.23",
     "evo",
     "numpy",
+    "importlib-resources; python_version < '3.9'",
 ]
 
 [project.urls]

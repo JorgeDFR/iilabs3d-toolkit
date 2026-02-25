@@ -4,7 +4,11 @@ import requests
 from pathlib import Path
 from typing import List, Tuple
 from rich.progress import Progress, BarColumn, TextColumn, DownloadColumn, TimeRemainingColumn
-from pkg_resources import resource_filename
+
+try:
+    from importlib.resources import files
+except ImportError: # backport for Python 3.8
+    from importlib_resources import files
 
 from iilabs3d_toolkit.download.dataset_info import *
 from iilabs3d_toolkit.tools.console import console
@@ -20,8 +24,8 @@ SENSOR_NAME_MAP = {
 def download_files(sensors: List[str], sequences: List[str], output_dir: Path) -> None:
     """Download multiple sequences with specific folder structure."""
     try:
-        json_path = resource_filename('iilabs3d_toolkit.download', 'dataset_files.json')
-        with open(json_path, "r") as f:
+        json_path = files("iilabs3d_toolkit.download").joinpath("dataset_files.json")
+        with json_path.open("r", encoding="utf-8") as f:
             dataset_info = json.load(f)
     except Exception as e:
         console.print(f"[red]Failed to load dataset info: {e}")
